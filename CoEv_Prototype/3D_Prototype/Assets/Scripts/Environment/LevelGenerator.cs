@@ -13,9 +13,11 @@ public class LevelGenerator : MonoBehaviour
     public GameObject boss;
     public GameObject doorFillVertical;
     public GameObject doorFillHorizontal;
+    public GameObject doorVertical;
+    public GameObject doorHorizontal;
 
-    public int roomsAmount = 10; // Not including start room
-    private int gridSize = 9; // 5 x 5
+    public int roomsAmount = 25; // Not including start room
+    private int gridSize = 25; // 5 x 5
     private int length = 20;
     private int xOrigin = 10;
     private int zOrigin = 10;
@@ -89,29 +91,61 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (grid[x, y])
                 {
+                    
+                    
                     if (grid[x + 1, y] == false) // East
                     {
                         var outsidePoint = new Vector3(( (xOrigin * 3) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
                             ((y - 1) * length));
-                        Instantiate(doorFillHorizontal, outsidePoint, Quaternion.identity).transform.Rotate(0.0f, 180.0f, 0.0f, Space.World);;
+                        Instantiate(doorFillHorizontal, outsidePoint, Quaternion.identity).transform.Rotate(0.0f, 180.0f, 0.0f, Space.World);
                     }
+                    else if(grid[x + 1, y])
+                    {
+                        var insidePoint = new Vector3(( (xOrigin * 3) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
+                            ((y - 1) * length) + 1);
+                        Instantiate(doorHorizontal, insidePoint, Quaternion.identity).transform.Rotate(0.0f, 270.0f, 0.0f, Space.World);
+                    }
+                    
+                    
                     if (grid[x - 1, y] == false) // West
                     {
                         var outsidePoint = new Vector3(xOrigin + (((x - 1) * length)), (float)(0 + (length * 0.05)),
                            ((y - 1) * length));
                         Instantiate(doorFillHorizontal, outsidePoint, Quaternion.identity);
-                    } 
+                    }
+                    else if(grid[x - 1, y])
+                    {
+                        var insidePoint = new Vector3(( (xOrigin * 3) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
+                            ((y - 1) * length) - 1);
+                        Instantiate(doorHorizontal, insidePoint, Quaternion.identity).transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
+                    }
+                    
+                    
                     if (grid[x, y + 1] == false) // North
                     {
                         var outsidePoint = new Vector3(((xOrigin * 2) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
                             (zOrigin + ((y - 1) * length)));
                         Instantiate(doorFillVertical, outsidePoint, Quaternion.identity);
                     }
+                    else if(grid[x, y + 1])
+                    {
+                        var insidePoint = new Vector3(((xOrigin * 2) + ((x - 1) * length)) + 1, (float)(0 + (length * 0.05)),
+                            (zOrigin + ((y - 1) * length)));
+                        Instantiate(doorVertical, insidePoint, Quaternion.identity).transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
+                    }
+
+
                     if (grid[x, y - 1] == false) // South
                     {
                         var outsidePoint = new Vector3(((xOrigin * 2) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
                             (((y - 1) * length)) - zOrigin);
                         Instantiate(doorFillVertical, outsidePoint, Quaternion.identity).transform.Rotate(0.0f, 180.0f, 0.0f, Space.World);
+                    }
+                    else if(grid[x, y - 1])
+                    {
+                        var insidePoint = new Vector3(((xOrigin * 2) + ((x - 1) * length)), (float)(0 + (length * 0.05)),
+                            (zOrigin + ((y - 1) * length)) + 1);
+                        Instantiate(doorVertical, insidePoint, Quaternion.identity).transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
                     }
                 }
             }

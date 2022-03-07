@@ -168,7 +168,9 @@ MonoBehaviour:
   boss: {fileID: 4433976611772022074, guid: a552178d32ddc2240bc0e3ee096fb49b, type: 3}
   doorFillVertical: {fileID: 8358305581156983828, guid: 2edd18eeee9dd7943ad77d662227dc7b, type: 3}
   doorFillHorizontal: {fileID: 8358305581156983828, guid: 8d39a7246232a2643a58ba9e1853d3d8, type: 3}
-  roomsAmount: 10
+  doorVertical: {fileID: 6172956001410358384, guid: 3c778aa10bac9bf41b7fc757c1325d41, type: 3}
+  doorHorizontal: {fileID: 6172956001410358384, guid: 112a928df80ac7345812c165e6254ab7, type: 3}
+  roomsAmount: 25
 --- !u!4 &378610732
 Transform:
   m_ObjectHideFlags: 0

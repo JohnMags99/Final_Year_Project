@@ -3,17 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DamageUp
+  - DamageDown
+  - HealthDown
+  - LuckUp
+  - LuckDown
+  - ResistanceUp
+  - ResistanceDown
+  - Coin
+  - HealthUp
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Wall
+  - Enemy
   - 
   - 
   - 

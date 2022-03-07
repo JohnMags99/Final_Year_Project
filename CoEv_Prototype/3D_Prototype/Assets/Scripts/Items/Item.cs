@@ -1,6 +1,8 @@
-﻿namespace Player
+﻿using UnityEngine;
+
+namespace Player
 {
-    public class Item
+    public class Item : MonoBehaviour
     {
         public enum ItemType
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,8 +14,8 @@ public class PlayerStats : MonoBehaviour
     public int damage = 5;
     public int resistance = 5;
     public int luck = 5;
-    
-    public Text healthText; 
+
+    public Text healthText;
     public Text damageText;
     public Text resistanceText;
     public Text luckText;
@@ -33,15 +34,17 @@ public class PlayerStats : MonoBehaviour
         damageText.text = damage.ToString() + "/100";
         resistanceText.text = resistance.ToString() + "/100";
         luckText.text = luck.ToString() + "/100";
-        
+
         if (health <= 0)
         {
-            SceneManager.LoadScene("Prototype");
-        } else if (maxHealth >= 200)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (maxHealth >= 200)
         {
             maxHealth = 200;
+            health = maxHealth;
         }
-        
+
         maxStat(damage);
         maxStat(resistance);
         maxStat(luck);
@@ -53,5 +56,58 @@ public class PlayerStats : MonoBehaviour
         {
             stat = 100;
         }
+    }
+
+    public void UpdateStat(String item, int amount)
+    {
+        if (item == "HealthUp")
+        {
+            maxHealth += amount;
+            health = maxHealth;
+        }
+
+        if (item == "HealthDown")
+        {
+            maxHealth -= amount;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
+        if (item == "DamageUp")
+        {
+            damage += amount;
+        }
+
+        if (item == "DamageDown")
+        {
+            damage -= amount;
+        }
+
+        if (item == "LuckUp")
+        {
+            luck += amount;
+        }
+
+        if (item == "LuckDown")
+        {
+            luck -= amount;
+        }
+
+        if (item == "ResistanceUp")
+        {
+            resistance += amount;
+        }
+
+        if (item == "ResistanceDown")
+        {
+            resistance -= amount;
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
     }
 }
